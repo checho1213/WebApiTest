@@ -61,8 +61,9 @@ namespace Services.Services
                              Id = e.Id,
                              Name = e.Name,
                              Price = e.Price,
-                             Year = e.Year
-
+                             Year = e.Year,
+                            OwnerId =  e.OwnerId,
+                            Owner =  e.Owner.Name
                          }).ToList();
             return query;
         }

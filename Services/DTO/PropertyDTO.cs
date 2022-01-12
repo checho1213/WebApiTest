@@ -12,7 +12,7 @@
         public string CodeInternal { get; set; }
         public string Year { get; set; }
         public int OwnerId { get; set; }
-
+        public string Owner { get; set; }
 
 
     }
