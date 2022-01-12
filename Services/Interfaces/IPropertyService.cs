@@ -14,5 +14,11 @@ namespace Services.Interfaces
         /// </summary>
         /// <returns></returns>
         List<PropertyDTO> GetAllProperties();
+
+        /// <summary>
+        /// crea o actualiza una propiedad
+        /// </summary>
+        /// <returns></returns>
+        bool SaveProperty(PropertyDTO property);
     }
 }
