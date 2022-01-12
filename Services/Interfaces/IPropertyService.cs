@@ -1,9 +1,6 @@
 ﻿using Services.DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
@@ -20,5 +17,23 @@ namespace Services.Interfaces
         /// </summary>
         /// <returns></returns>
         bool SaveProperty(PropertyDTO property);
+
+        /// <summary>
+        /// actualiza una propiedad
+        /// </summary>
+        /// <returns></returns>
+        bool UpdateProperty(PropertyDTO property);
+
+        /// <summary>
+        /// Agrega una imagen a una propiedad
+        /// </summary>
+        /// <returns></returns>
+        bool AddImageProperty(Byte[] image, int propertyId);
+
+        /// <summary>
+        /// Obtiene el listado de propiedades por filtros
+        /// </summary>
+        /// <returns></returns>
+        List<PropertyDTO> GetPropertiesByFilter(string filter);
     }
 }

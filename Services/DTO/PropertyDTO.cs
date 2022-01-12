@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Services.DTO
+﻿namespace Services.DTO
 {
     public class PropertyDTO
     {
@@ -17,8 +11,9 @@ namespace Services.DTO
         
         public string CodeInternal { get; set; }
         public string Year { get; set; }
-        
-        
-        
+        public int OwnerId { get; set; }
+
+
+
     }
 }
