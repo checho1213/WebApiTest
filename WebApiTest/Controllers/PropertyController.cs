@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Services.DTO;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,9 +26,35 @@ namespace WebApiTest.Controllers
         /// </summary>
         /// <returns>ActionResult.</returns>
         [HttpGet]
+        
         public ActionResult Get()
         {
             var data = _service.GetAllProperties();
+            return Ok(data);
+        }
+
+
+        /// <summary>
+        /// Obtiene las propiedades por filtro
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        [HttpGet]
+        [Route("GetPropertiesByFilter")]
+        public ActionResult GetPropertiesByFilter(string name, string address, string internalCode)
+        {
+            var data = _service.GetPropertiesByFilter(name,address,internalCode);
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// Actualiza la propiedad
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        [Route("UpdateProperty")]
+        public ActionResult UpdateProperty([FromBody]PropertyDTO property)
+        {
+            var data = _service.UpdateProperty(property);
             return Ok(data);
         }
     }

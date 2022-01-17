@@ -13,6 +13,9 @@ namespace Infraestructure.Data.Entities
         [Required]
         public string CodeInternal { get; set; }
         public string Year { get; set; }
+
+        public string IncomeStatement{ get; set; }
+
         public Owner Owner { get; set; }
         [Required]
         public int OwnerId { get; set; }

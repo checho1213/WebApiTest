@@ -1,4 +1,6 @@
-﻿namespace Services.DTO
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Services.DTO
 {
     public class PropertyDTO
     {
@@ -13,6 +15,10 @@
         public string Year { get; set; }
         public int OwnerId { get; set; }
         public string Owner { get; set; }
+
+        public string IncomeStatement { get; set; }
+
+        public IFormFile  ImageFile { get; set; }
 
 
     }

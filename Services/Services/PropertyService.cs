@@ -62,8 +62,9 @@ namespace Services.Services
                              Name = e.Name,
                              Price = e.Price,
                              Year = e.Year,
-                            OwnerId =  e.OwnerId,
-                            Owner =  e.Owner.Name
+                             OwnerId = e.OwnerId,
+                             IncomeStatement = e.IncomeStatement,
+                             Owner = e.Owner.Name
                          }).ToList();
             return query;
         }
@@ -72,12 +73,10 @@ namespace Services.Services
         /// Obtiene las propiedades por filtro
         /// </summary>
         /// <returns></returns>
-        public List<PropertyDTO> GetPropertiesByFilter(string filter)
+        public List<PropertyDTO> GetPropertiesByFilter(string name, string address, string internalCode)
         {
 
-            var query = (from e in _context.Properties
-                         where e.Address.Contains(filter) || e.CodeInternal.Contains(filter) || e.Name.Contains(filter) || e.Owner.Name.Contains(filter)
-                         || e.Year.Contains(filter)
+            var query = (from e in _context.Properties                         
                          select new PropertyDTO()
                          {
                              Address = e.Address,
@@ -85,9 +84,14 @@ namespace Services.Services
                              Id = e.Id,
                              Name = e.Name,
                              Price = e.Price,
-                             Year = e.Year
+                             Year = e.Year,
+                             IncomeStatement =  e.IncomeStatement,
+                             Owner =  e.Owner.Name
 
                          }).ToList();
+            query = !string.IsNullOrEmpty(name) ? query.Where(e => e.Name.ToUpper().Contains(name.ToUpper())).ToList() : query;
+            query = !string.IsNullOrEmpty(address) ? query.Where(e => e.Address.ToUpper().Contains(address.ToUpper())).ToList() : query;
+            query = !string.IsNullOrEmpty(internalCode) ? query.Where(e => e.CodeInternal.ToUpper().Contains(internalCode.ToUpper())).ToList() : query;
             return query;
         }
 
@@ -104,6 +108,7 @@ namespace Services.Services
                 propertySave.OwnerId = property.OwnerId;
                 propertySave.Price = property.Price;
                 propertySave.Year = property.Year;
+                propertySave.IncomeStatement = property.IncomeStatement;
                 _context.Properties.Add(propertySave);
                 return true;
             }
@@ -126,8 +131,11 @@ namespace Services.Services
                                     select e).FirstOrDefault();
                 propertySave.Name = property.Name;
                 propertySave.OwnerId = property.OwnerId;
+                propertySave.Address = property.Address;
+                propertySave.CodeInternal = property.CodeInternal;
                 propertySave.Price = property.Price;
                 propertySave.Year = property.Year;
+                propertySave.IncomeStatement = property.IncomeStatement;
                 _context.Entry(propertySave).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
                 return true;

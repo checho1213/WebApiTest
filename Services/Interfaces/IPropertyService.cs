@@ -34,6 +34,6 @@ namespace Services.Interfaces
         /// Obtiene el listado de propiedades por filtros
         /// </summary>
         /// <returns></returns>
-        List<PropertyDTO> GetPropertiesByFilter(string filter);
+        List<PropertyDTO> GetPropertiesByFilter(string name, string address, string internalCode);
     }
 }

@@ -36,7 +36,8 @@ namespace WebApiTest
             var connectionString = Configuration.GetConnectionString("webApi");
             services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IPropertyService, PropertyService>();
-            
+            services.AddTransient<IOwnerService, OwnerService>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -44,7 +45,7 @@ namespace WebApiTest
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiTest", Version = "v1" });
             });
 
-
+            services.AddCors();
 
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("secret"));
 
@@ -75,6 +76,9 @@ namespace WebApiTest
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiTest v1"));
             }
+            app.UseCors(options => { options.AllowAnyOrigin();
+                options.AllowAnyMethod(); options.AllowAnyHeader();
+            });
             app.UseAuthentication();
             app.UseHttpsRedirection();
 
