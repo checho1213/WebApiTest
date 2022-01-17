@@ -106,10 +106,13 @@ namespace Services.Services
                 Property propertySave = new Property();
                 propertySave.Name = property.Name;
                 propertySave.OwnerId = property.OwnerId;
+                propertySave.Address = property.Address;
+                propertySave.CodeInternal = property.CodeInternal;
                 propertySave.Price = property.Price;
                 propertySave.Year = property.Year;
-                propertySave.IncomeStatement = property.IncomeStatement;
+                propertySave.IncomeStatement = "Available";
                 _context.Properties.Add(propertySave);
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception ex)

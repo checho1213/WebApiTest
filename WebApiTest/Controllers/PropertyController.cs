@@ -57,5 +57,16 @@ namespace WebApiTest.Controllers
             var data = _service.UpdateProperty(property);
             return Ok(data);
         }
+        /// <summary>
+        /// guarda la propiedad
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        [Route("SaveProperty")]
+        public ActionResult SaveProperty([FromBody] PropertyDTO property)
+        {
+            var data = _service.SaveProperty(property);
+            return Ok(data);
+        }
     }
 }
